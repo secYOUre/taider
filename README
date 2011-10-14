@@ -1,0 +1,30 @@
+
+TAIDER -- storing and manipulating TAI dates and times in Erlang
+================================================================
+
+Taider is the Erlang port of libtai. As such, it is aimed at providing
+the means for storing and manipulating dates and times in Erlang.
+
+As libtai, Taider supports two time scales: (1) TAI64, covering a few 
+hundred billion years with 1-second precision; (2) TAI64NA, covering 
+the same period with 1-attosecond precision. Both scales are defined 
+in terms of TAI, the current international real time standard.
+
+Taider provides an internal format for TAI64, record tai, designed for
+fast time manipulations. The taider_tai:pack() and taider_tai:unpack() 
+functions convert between record tai and the portable 8-byte TAI64 
+storage format introduced by libtai. Taider provides similar internal
+and external formats for TAI64NA.
+
+
+The next releases of Taider will provide a record, caldate, to store 
+dates in year-month-day form. It can convert record caldate, under 
+the Gregorian calendar, to a modified Julian day number for easy date 
+arithmetic.
+
+Taider will provide also a caltime record to store calendar dates and 
+times along with UTC offsets. It will convert from record tai to record 
+caltime in UTC, accounting for leap seconds, for accurate date and 
+time display. It will also convert back from record caltime to record 
+tai for user input.
+

@@ -1,0 +1,19 @@
+{application, taider,
+ [
+  {description, "TAIDER: storing and manipulating TAI dates and times in Erlang "},
+  {vsn, "0.0.1"},
+  {id, "taider"},
+  {modules,      [
+                  taider_tai,
+                  taider_taia
+                 ]},
+  {registered, []},
+  {applications, [kernel, stdlib]},
+
+  %%
+  %% mod: Specify the module name to start the application, plus args
+  %%
+  {mod, {taider_tai, []}},
+  {env, []}
+ ]
+}.

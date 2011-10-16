@@ -78,7 +78,7 @@ frommjd(Day) ->
 
         PwDay = (Day2 + 3) rem 7,
 
-        io:format("PwDay: ~B, Day: ~B, Year: ~B~n", [PwDay, Day2, Year0]),
+        %% io:format("PwDay: ~B, Day: ~B, Year: ~B~n", [PwDay, Day2, Year0]),
 
         Year1 = Year0 * 4,
         {Year2, Day3} = if Day2 =:= 146096 ->
@@ -86,13 +86,13 @@ frommjd(Day) ->
             true ->
                 {Year1 + (Day2 div 36524), Day2 rem 36524}
         end,
-        io:format("PwDay: ~B, Day: ~B, Year: ~B~n", [PwDay, Day2, Year2]),
+        %%io:format("PwDay: ~B, Day: ~B, Year: ~B~n", [PwDay, Day2, Year2]),
         Year3 = Year2 * 25,
         Year4 = Year3 + (Day3 div 1461),
         Day4  = Day3 rem 1461,
         Year5 = Year4 * 4,
 
-        io:format("PwDay: ~B, Day: ~B, Year: ~B~n", [PwDay, Day4, Year5]),
+        %%io:format("PwDay: ~B, Day: ~B, Year: ~B~n", [PwDay, Day4, Year5]),
 
         if Day4 < 306 ->
                 YDay = 1;
@@ -105,7 +105,7 @@ frommjd(Day) ->
                 {Year5 + (Day4 div 365), Day4 rem 365}
         end,
         YDay0 = YDay + Day5,
-        io:format("YDay: ~B, Day: ~B, Year: ~B~n", [YDay0, Day5, Year6]),
+        %%io:format("YDay: ~B, Day: ~B, Year: ~B~n", [YDay0, Day5, Year6]),
 
         Day6  = Day5 * 10,
         Month = (Day6 + 5) div 306,
@@ -116,7 +116,7 @@ frommjd(Day) ->
            true ->
                 {YDay0 + 59, Year6, Month + 2}
         end,
-        io:format("YDay: ~B, Day: ~B, Year: ~B~n", [YDay1, Day8, Year7]),
+        %%io:format("YDay: ~B, Day: ~B, Year: ~B~n", [YDay1, Day8, Year7]),
 
         CD = #caldate{ year  = Year7,
                        month = Month0 + 1,
@@ -137,6 +137,10 @@ dyupdate(Day, Year) ->
 -spec scan(string()) -> #caldate{}.
 
 scan(Str) ->
+        O    = string:chr(Str, $-),
+        Sign = if O ==  1 -> -1;
+                     true -> 1
+               end,
         [Year, Month, Day] = string:tokens(Str, "-"),
 
         {Y, []} = string:to_integer(Year),
@@ -144,7 +148,7 @@ scan(Str) ->
         {D, []} = string:to_integer(Day),
 
         #caldate{
-                year  = Y,
+                year  = Sign * Y,
                 month = M,
                 day   = D
         }.
@@ -153,14 +157,14 @@ scan(Str) ->
 -spec fmt(#caldate{}) -> string().
 
 fmt(CD) ->
-        lists:flatten(io_lib:format("~B-~B-~B", 
+        lists:flatten(io_lib:format("~B-~2..0B-~2..0B", 
                 [CD#caldate.year, CD#caldate.month, CD#caldate.day])).
 
 
 -spec normalize(#caldate{}) -> #caldate{}.
 
 normalize(CD) -> 
-        {CD0, _, _} = taider_caldate:formmjd(taider_caldate:mjd(CD)),
+        {CD0, _, _} = taider_caldate:frommjd(taider_caldate:mjd(CD)),
         CD0.
 
 

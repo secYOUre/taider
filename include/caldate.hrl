@@ -3,6 +3,9 @@
 -type caldate_month() :: 1..12.
 -type caldate_day()   :: 1..31.
 
+-type caldate_date()  :: {'caldate',caldate_year(),caldate_month(),caldate_day()
+}.
+
 -record(caldate, {
         year  :: caldate_year(),
         month :: caldate_month(),

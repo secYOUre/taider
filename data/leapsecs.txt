@@ -3,6 +3,7 @@
 # http://pobox.com/~djb/libtai/leapsecs.txt, version 1998-10-13
 #
 # Official sources:
+# http://maia.usno.navy.mil/ser7/leapsec.dat
 # http://maia.usno.navy.mil/leapsec.html
 # http://hpiers.obspm.fr/webiers/general/earthor/utc/UTC.html
 #

@@ -92,6 +92,19 @@ read() ->
                         {ok, Id} = read_leapsecs(S, TableId, 0),
                         {ok, Id};
 
+                {error, enoent} ->
+                        %% if the .dat file is not there, try to build
+                        %% a new one
+                        load(), 
+                        O = case file:open(Dat, read) of
+                                {ok, S1} ->
+                                        {ok, Id2} = read_leapsecs(S1,TableId,0),
+                                        {ok, Id2};
+                                {error, Error2} ->
+                                        {error, Error2}
+                        end,
+                        O;
+
                 {error, Error} ->
                         {error, Error}
         end.

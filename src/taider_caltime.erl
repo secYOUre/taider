@@ -100,7 +100,7 @@ fmt(CT) ->
                                    true -> "+"
                end,
 
-        lists:flatten(io_lib:format("~s ~B:~B:~B ~s~4..0B",
+        lists:flatten(io_lib:format("~s ~2..0B:~2..0B:~2..0B ~s~4..0B",
                         [Date, CT#caltime.hour, 
                          CT#caltime.minutes, CT#caltime.seconds, 
                          Sign, CT#caltime.offset])).

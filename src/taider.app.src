@@ -5,6 +5,7 @@
   {id, "taider"},
   {modules,      [
                   taider_caldate,
+                  taider_leapsecs,
                   taider_tai,
                   taider_taia
                  ]},

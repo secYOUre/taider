@@ -110,7 +110,7 @@ read() ->
         end.
 
 
--spec read_leapsecs(io_device(), non_neg_integer(), non_neg_integer()) -> 'ok'. 
+-spec read_leapsecs(io_device(), non_neg_integer(), non_neg_integer()) -> {'ok', non_neg_integer()}.
 
 read_leapsecs(S, TableId, Offset) ->
         case file:pread(S, Offset, 8) of 

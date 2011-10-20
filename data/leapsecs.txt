@@ -1,3 +1,5 @@
+# https://github.com/secYOUre/taider/blob/master/data/leapsecs.txt
+# based upon:
 # http://pobox.com/~djb/libtai/leapsecs.txt, version 1998-10-13
 #
 # Official sources:

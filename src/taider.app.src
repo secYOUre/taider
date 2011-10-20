@@ -1,11 +1,12 @@
 {application, taider,
  [
   {description, "TAIDER: storing and manipulating TAI dates and times in Erlang "},
-  {vsn, "0.1.0"},
+  {vsn, "0.2.0"},
   {id, "taider"},
   {modules,      [
                   taider_caldate,
                   taider_leapsecs,
+                  taider_caltime,
                   taider_tai,
                   taider_taia
                  ]},

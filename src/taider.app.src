@@ -7,6 +7,7 @@
                   taider_caldate,
                   taider_leapsecs,
                   taider_caltime,
+                  taider_utils,
                   taider_tai,
                   taider_taia
                  ]},

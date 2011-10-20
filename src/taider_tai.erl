@@ -22,7 +22,7 @@
 
 
 -spec now() -> #tai{}.
-
+ 
 now() ->
         Now = erlang:now(),
         Sec = ?UNIX_EPOCH_TAISEC 

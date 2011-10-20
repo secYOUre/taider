@@ -16,15 +16,13 @@ functions convert between record tai and the portable 8-byte TAI64
 storage format introduced by libtai. Taider provides similar internal
 and external formats for TAI64NA.
 
+Taider provides a record, caldate, to store dates in year-month-day 
+form. It can convert record caldate, under the Gregorian calendar, 
+to a modified Julian day number for easy date arithmetic.
 
-The next releases of Taider will provide a record, caldate, to store 
-dates in year-month-day form. It can convert record caldate, under 
-the Gregorian calendar, to a modified Julian day number for easy date 
-arithmetic.
-
-Taider will provide also a caltime record to store calendar dates and 
-times along with UTC offsets. It will convert from record tai to record 
+Taider provides also a caltime record to store calendar dates and 
+times along with UTC offsets. It converts from record tai to record 
 caltime in UTC, accounting for leap seconds, for accurate date and 
-time display. It will also convert back from record caltime to record 
+time display. It also converts back from record caltime to record 
 tai for user input.
 

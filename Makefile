@@ -26,6 +26,9 @@ deps:
 clean:
 	@$(REBAR) clean
 
+ct:
+	@$(REBAR) ct
+
 distclean:
 	@$(REBAR) delete-deps
 

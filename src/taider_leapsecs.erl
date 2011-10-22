@@ -221,11 +221,13 @@ sub(TAI, TableId) ->
                                end end,
                                0, GreaterLeaps), 
 
+        Results0     = lists:append([{TAI, false}], Results),
+
         {Leaps, NLeaps} = lists:partition(
                                 fun({_TAI, Flag}) ->                        
                                         Flag =:= true
 
-                                end, Results),
+                                end, Results0),
         {{tai, X}, Flag} = if length(Leaps) > 0 ->
                         lists:nth(1, Leaps);
                true              ->

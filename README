@@ -26,3 +26,5 @@ caltime in UTC, accounting for leap seconds, for accurate date and
 time display. It also converts back from record caltime to record 
 tai for user input.
 
+Taider is intended to be an homophone of tider (tide in Old English 
+meant "time period").

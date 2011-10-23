@@ -156,7 +156,7 @@ read_leapsecs(S, TableId, Offset) ->
                 eof     ->
                         file:close(S);
                 {error, _Error} ->
-                        %% io:format("Error: ~p~n", [Error]),
+                        %%io:format("Error: ~p~n", [Error]),
                         file:close(S);
                 {ok, R} ->
                         %%io:format("Unpacking: ~p~n", [R]),

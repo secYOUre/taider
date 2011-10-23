@@ -49,7 +49,6 @@
         approx/1,
         less/2,
         pack/1,
-        pack/3,
         unpack/1
         ]).
 
@@ -99,26 +98,13 @@ less(T, U) ->
 -spec pack(#tai{}) -> string().
 
 pack(T) ->
-        pack(T#tai.x, [], 7).
+        X = T#tai.x,
+        <<X:64>>.
 
--spec pack(non_neg_integer(), string(), non_neg_integer()) -> string().
+-spec unpack(string()|binary()) -> #tai{}.
 
-pack(X, P, 0) ->
-        %%io:format("pack: X: ~B, P: ~p, N: ~B~n", [X, P, 0]),
-        lists:append(P, [X]);
-
-pack(X, P, N) ->
-        %%io:format("pack: X: ~B, P: ~p, N: ~B~n", [X, P, N]),
-        P1 = lists:append(P, [X band 255]),
-        pack(X bsr 8, P1, N -1).
-
-
--spec unpack(string()) -> #tai{}.
-
-unpack(P) ->
-        Reversed = lists:reverse(P),
-        U  = lists:foldl(fun(S, X) -> X1 = X bsl 8, X1 + S end, 
-                    lists:nth(1, Reversed), 
-                    lists:nthtail(1, Reversed)),
-
-        #tai{ x = U}.
+unpack(P) when is_list(P) ->
+        unpack(list_to_binary(P));
+unpack(P) when is_binary(P) ->
+        <<X:64>> = P,
+        #tai{ x = X}.

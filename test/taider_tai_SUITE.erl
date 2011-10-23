@@ -131,8 +131,9 @@ test_pack(_Config) ->
     ?line Now  = taider_tai:now(),
     ?line Bin  = taider_tai:pack(Now),
 
-    ?line ?TAI_PACK = length(Bin),
-    ?line Bin = lists:filter(fun(X) -> X =< 255 end, Bin),
+    ?line ?TAI_PACK = size(Bin),
+    ?line L = binary_to_list(Bin),
+    ?line L = lists:filter(fun(X) -> X =< 255 end, L),
     ok.
 
 test_unpack() ->

@@ -199,27 +199,19 @@ less(TA, U) ->
 -spec pack(#taia{}) -> string().
 
 pack(TA) ->
-        SecP  = taider_tai:pack(#tai{ x = TA#taia.sec}),
-        NanoP = taider_tai:pack(TA#taia.nano, [], 3),
-        AttoP = taider_tai:pack(TA#taia.atto, [], 3),
-        SecP ++ NanoP ++ AttoP.
+        <<(TA#taia.sec):64, (TA#taia.nano):32, (TA#taia.atto):32>>.
 
+-spec unpack(string()|binary()) -> #taia{}.
 
--spec unpack(string()) -> #taia{}.
-
-unpack(PTA) ->
-        PSec  = lists:sublist(PTA, 1, 8),
-        PNano = lists:sublist(PTA, 9, 4),
-        PAtto = lists:sublist(PTA, 13,4),
-
-        USec  = taider_tai:unpack(PSec),
-        UNano = taider_tai:unpack(PNano),
-        UAtto = taider_tai:unpack(PAtto),
+unpack(PTA) when is_list(PTA) ->
+        unpack(list_to_binary(PTA));
+unpack(PTA) when is_binary(PTA) ->
+        <<Sec:64, Nano:32, Atto:32>> = PTA,
 
         #taia{
-                sec  = USec#tai.x,
-                nano = UNano#tai.x,
-                atto = UAtto#tai.x
+                sec  = Sec,
+                nano = Nano,
+                atto = Atto
         }.
 
 

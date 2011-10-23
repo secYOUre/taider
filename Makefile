@@ -36,6 +36,6 @@ edoc:
 	@$(ERL) -noshell -run edoc_run application '$(APP)' '"."' '[{preprocess, true},{includes, ["."]}]'
 
 test: deps
-	@$(REBAR) skip_deps=true eunit
+	@$(REBAR) skip_deps=true ct
 
 

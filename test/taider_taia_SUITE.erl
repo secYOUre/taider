@@ -205,8 +205,9 @@ test_pack(_Config) ->
     ?line Now  = taider_taia:now(),
     ?line Bin  = taider_taia:pack(Now),
 
-    ?line ?TAIA_PACK = length(Bin),
-    ?line Bin = lists:filter(fun(X) -> X =< 255 end, Bin),
+    ?line ?TAIA_PACK = size(Bin),
+    ?line L = binary_to_list(Bin),
+    ?line L = lists:filter(fun(X) -> X =< 255 end, L),
     ok.
 
 test_unpack() ->

@@ -47,8 +47,6 @@
 
 -include_lib("common_test/include/ct.hrl").
 
--import(ct).
--import(lists).
 % Let's error out if our tests take over a minute to complete. This can be reconfigured
 % on a per testcase basis in init_per_testcase.
 suite() -> [{timetrap, {minutes, 1}}].

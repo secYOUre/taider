@@ -48,8 +48,6 @@
 -include_lib("kernel/include/file.hrl").
 -include_lib("common_test/include/ct.hrl").
 
--import(ct).
--import(lists).
 % Let's error out if our tests take over a minute to complete. This can be reconfigured
 % on a per testcase basis in init_per_testcase.
 suite() -> [{timetrap, {minutes, 1}}].
@@ -94,7 +92,7 @@ test_init() ->
 test_init(_Config) ->
     ?line {ok, Id} = taider_leapsecs:init(),
     ?line Leapsecs = ets:tab2list(Id),
-    ?line 24 = length(Leapsecs),
+    ?line 25 = length(Leapsecs),
     ?line Leapsecs = lists:filter(
                 fun({tai, L}) -> L >= 4611686018506184714 end, 
                 Leapsecs),

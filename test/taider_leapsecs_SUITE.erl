@@ -92,7 +92,7 @@ test_init() ->
 test_init(_Config) ->
     ?line {ok, Id} = taider_leapsecs:init(),
     ?line Leapsecs = ets:tab2list(Id),
-    ?line 25 = length(Leapsecs),
+    ?line 26 = length(Leapsecs),
     ?line Leapsecs = lists:filter(
                 fun({tai, L}) -> L >= 4611686018506184714 end, 
                 Leapsecs),
